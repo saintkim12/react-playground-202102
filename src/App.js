@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react'
+import { Provider } from './context'
+import ElCodeEditor from './components/ElCodeEditor'
 
 function App() {
+  const [value, setValue] = useState('123')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider value={{ value, setValue }}>
+        <header className="App-header">
+          <ElCodeEditor />
+          <button type="button" onClick={() => setValue('test')}>setValue('test')</button>
+          <button type="button" onClick={() => setValue('')}>clear data</button>
+        </header>
+      </Provider>
     </div>
   );
 }
